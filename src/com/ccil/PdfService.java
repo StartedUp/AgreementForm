@@ -1,8 +1,9 @@
 package com.ccil;
 
 import java.io.File;
-import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -18,6 +19,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @Path("/PdfService")
 public class PdfService {
@@ -26,13 +28,15 @@ public class PdfService {
 	@GET
 	@Path("/editForm")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response runPython(@DefaultValue("") @QueryParam("data") String data) {
+	public Response runPython(@DefaultValue("") @QueryParam("data") String data,@DefaultValue("") @QueryParam("agreementType") String agreementType) {
 		data = "{\"firstName\":\"Prithvi\", \"lastName\": \"Prakash\"}";
 		Gson gson = new Gson();
-		LeaseForm form = gson.fromJson(data, LeaseForm.class);
-		System.out.println(form);
-		String src = "G:/my_db/MyGit/StartedUp/AgreementForm/src.pdf";
-		String test = "G:/my_db/MyGit/StartedUp/AgreementForm/test.pdf";
+		Type type = new TypeToken<Map<String, String>>() {
+		}.getType();
+		Map<String, String> fieldNameAndValue = gson.fromJson(data, type);
+		System.out.println(fieldNameAndValue);
+		String src = "G:/my_db/MyGit/StartedUp/AgreementForm/"+agreementType+"Src.pdf";
+		String test = "G:/my_db/MyGit/StartedUp/AgreementForm/"+agreementType+".pdf";
 		try {
 			File pdf = new File(src);
 			_pdfDocument = PDDocument.load(pdf);
@@ -41,9 +45,10 @@ public class PdfService {
 			PDAcroForm acroForm = docCatalog.getAcroForm();
 			List<PDField> fields = acroForm.getFields();
 			for (PDField pdField : fields) {
-				System.out.println(pdField.getFullyQualifiedName()+" "+form.getFirstName());
+				System.out.println(
+						pdField.getFullyQualifiedName() + " " + fieldNameAndValue.get(pdField.getFullyQualifiedName()));
 				if (pdField != null) {
-					pdField.setValue(form.getFirstName());
+					pdField.setValue(fieldNameAndValue.get(pdField.getFullyQualifiedName()));
 					pdField.setReadOnly(true);
 				}
 			}
