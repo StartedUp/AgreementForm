@@ -290,13 +290,28 @@
 <script type="text/javascript" src="/include/form/form7.js?1504"></script>
 <script>
 $( document ).ready(function() {
-$('input').change(function () { 
-	sessionStorage.setItem(this.id,this.value);
+	sessionStorage.clear();
+	$('input').change(function () { 
+		sessionStorage.setItem(this.id,this.value);
+	});
+	$('#save').click(function(){
+		sessionStorage.setItem("agreementType","ContractCarrierAgreement");
+		$.ajax({
+    url : "http://localhost:8080/EditAgreementForm/rest/PdfService/editForm",
+    type: "GET",
+    data : {data:JSON.stringify(sessionStorage)},
+    success: function()
+    {
+       window.open("file:///G:/my_db/MyGit/StartedUp/AgreementForm/ContractCarrierAgreement.pdf");
+    },
+    error: function ()
+    {
+ 		alert('Something went wrong try again');
+ 		window.open("file:///G:/my_db/MyGit/StartedUp/AgreementForm/ContractCarrierAgreement.pdf");
+    }
 });
+	});
 });
-
-</script>
-	
 </script>
 </head>
 <body>
