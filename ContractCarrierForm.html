@@ -288,7 +288,14 @@
 <![endif]-->
 <script type="text/javascript" src="/include/form/signature/jSignature.min.js" defer="defer"></script>
 <script type="text/javascript" src="/include/form/form7.js?1504"></script>
-<script type="text/javascript">
+<script>
+$( document ).ready(function() {
+$('input').change(function () { 
+	sessionStorage.setItem(this.id,this.value);
+});
+});
+
+</script>
 	
 </script>
 </head>
@@ -321,16 +328,16 @@
 
 			<div id="q0" class="q required">
 				<a class="item_anchor" name="ItemAnchor1"></a>
-				<label class="question left_question_first" for="RESULT_TextField-1">First Name&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-1" class="text_field" id="RESULT_TextField-1"  size="25" value="" /></div>
+				<label class="question left_question_first" for="firstName">First Name&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="firstName" class="text_field" id="firstName"  size="25" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q1" class="q required">
 				<a class="item_anchor" name="ItemAnchor2"></a>
-				<label class="question left_question_first" for="RESULT_TextField-2">Last Name&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-2" class="text_field" id="RESULT_TextField-2"  size="25" value="" /></div>
+				<label class="question left_question_first" for="lastName">Last Name&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="lastName" class="text_field" id="lastName"  size="25" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
@@ -340,10 +347,10 @@
 				<span class="question left_question_first">I operate my business under a:&nbsp;<b class="icon_required">*</b></span>
 				<table class="inline_grid inline_answer">
 					<tr>
-						<td><input type="radio" name="RESULT_RadioButton-3" class="multiple_choice" id="RESULT_RadioButton-3_0" value="Radio-0" /><label for="RESULT_RadioButton-3_0" >Individual/DBA</label></td>
+						<td><input type="radio" name="RadioButton3" class="multiple_choice" id="firstRadioButton" value="Individual/DBA" /><label for="RESULT_RadioButton-3_0" >Individual/DBA</label></td>
 					</tr>
 					<tr>
-						<td><input type="radio" name="RESULT_RadioButton-3" class="multiple_choice" id="RESULT_RadioButton-3_1" value="Radio-1" /><label for="RESULT_RadioButton-3_1" >Legal Entity</label></td>
+						<td><input type="radio" name="RadioButton3" class="multiple_choice" id="secondRadioButton" value="Legal Entity" /><label for="RESULT_RadioButton-3_1" >Legal Entity</label></td>
 					</tr>
 				</table>
 			</div>
@@ -352,88 +359,88 @@
 
 			<div id="q60" class="q">
 				<a class="item_anchor" name="ItemAnchor4"></a>
-				<label class="question left_question_first" for="RESULT_TextField-4">Legal Entity Name</label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-4" class="text_field" id="RESULT_TextField-4"  size="25" maxlength="100" value="" /></div>
+				<label class="question left_question_first" for="legalEntityName">Legal Entity Name</label>
+				<div class="inline_answer"><input type="text" name="legalEntityName" class="text_field" id="legalEntityName"  size="25" maxlength="100" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q2" class="q required">
 				<a class="item_anchor" name="ItemAnchor5"></a>
-				<label class="question left_question_first" for="RESULT_TextField-5">Street Address&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-5" class="text_field" id="RESULT_TextField-5"  size="40" value="" /></div>
+				<label class="question left_question_first" for="streetAddress">Street Address&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="streetAddress" class="text_field" id="streetAddress"  size="40" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q3" class="q">
 				<a class="item_anchor" name="ItemAnchor6"></a>
-				<label class="question left_question_first" for="RESULT_TextField-6">Address Line 2</label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-6" class="text_field" id="RESULT_TextField-6"  size="40" value="" /></div>
+				<label class="question left_question_first" for="addressLine2">Address Line 2</label>
+				<div class="inline_answer"><input type="text" name="addressLine2" class="text_field" id="addressline2"  size="40" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q4" class="q required">
 				<a class="item_anchor" name="ItemAnchor7"></a>
-				<label class="question left_question_first" for="RESULT_TextField-7">City&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-7" class="text_field" id="RESULT_TextField-7"  size="25" value="" /></div>
+				<label class="question left_question_first" for="city">City&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="city" class="text_field" id="City"  size="25" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q5" class="q required">
 				<a class="item_anchor" name="ItemAnchor8"></a>
-				<label class="question left_question_first" for="RESULT_TextField-8">State/Province/Region&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-8" class="text_field" id="RESULT_TextField-8"  size="25" value="" /></div>
+				<label class="question left_question_first" for="region">State/Province/Region&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="region" class="text_field" id="State"  size="25" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q6" class="q required">
 				<a class="item_anchor" name="ItemAnchor9"></a>
-				<label class="question left_question_first" for="RESULT_TextField-9">Zip/Postal Code&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-9" class="text_field" id="RESULT_TextField-9"  size="25" value="" /></div>
+				<label class="question left_question_first" for="zipCode">Zip/Postal Code&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="zipCode" class="text_field" id="ZipCode"  size="25" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q8" class="q required">
 				<a class="item_anchor" name="ItemAnchor10"></a>
-				<label class="question left_question_first" for="RESULT_TextField-10">Phone Number&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-10" class="text_field" id="RESULT_TextField-10"  size="25" maxlength="255" value="" /></div>
+				<label class="question left_question_first" for="phoneNumber">Phone Number&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="phoneNumber" class="text_field" id="phoneNumber"  size="25" maxlength="255" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q9" class="q required">
 				<a class="item_anchor" name="ItemAnchor11"></a>
-				<label class="question left_question_first" for="RESULT_TextField-11">Email Address&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="email" name="RESULT_TextField-11" class="text_field" id="RESULT_TextField-11"  size="40" value="" /></div>
+				<label class="question left_question_first" for="email">Email Address&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="email" name="email" class="text_field" id="email"  size="40" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q10" class="q required">
 				<a class="item_anchor" name="ItemAnchor12"></a>
-				<label class="question left_question_first" for="RESULT_TextField-12">USDOT Number&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-12" class="text_field number_field" id="RESULT_TextField-12"  size="25" maxlength="255" value="" /></div>
+				<label class="question left_question_first" for="usDotNumber">USDOT Number&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="usDotNumber" class="text_field number_field" id="Carrier USDOT"  size="25" maxlength="255" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q77" class="q required">
 				<a class="item_anchor" name="ItemAnchor13"></a>
-				<label class="question left_question_first" for="RESULT_TextField-13">Position with Organization&nbsp;<b class="icon_required">*</b></label>
-				<div class="inline_answer"><input type="text" name="RESULT_TextField-13" class="text_field" id="RESULT_TextField-13"  size="25" maxlength="50" value="" /></div>
+				<label class="question left_question_first" for="position">Position with Organization&nbsp;<b class="icon_required">*</b></label>
+				<div class="inline_answer"><input type="text" name="position" class="text_field" id="position"  size="25" maxlength="50" value="" /></div>
 			</div>
 
 			<div class="clear"></div>
 
 			<div id="q11" class="q required">
 				<a class="item_anchor" name="ItemAnchor14"></a>
-				<label class="question left_question_first" for="RESULT_TextField-14">Date&nbsp;<b class="icon_required">*</b></label>
-				<input type="text" name="RESULT_TextField-14" class="text_field calendar_field" id="RESULT_TextField-14" size="10" maxlength="10" datemax="" datemin="" value="04-17-2016" date="mm-dd-yy" /><img class="svg popup_button inline_button" src="/images/icons/formIcons/calendar.svg" alt="calendar" style="vertical-align:middle;"/>
+				<label class="question left_question_first" for="date">Date&nbsp;<b class="icon_required">*</b></label>
+				<input type="text" name="date" class="text_field calendar_field" id="Effective Date" size="10" maxlength="10" datemax="" datemin="" value="04-17-2016" date="mm-dd-yy" /><img class="svg popup_button inline_button" src="/images/icons/formIcons/calendar.svg" alt="calendar" style="vertical-align:middle;"/>
 				<img class="gif popup_button inline_button" src="/images/icons/formIcons/calendar.gif" alt="calendar" style="vertical-align:middle;"/>
 
 			</div>
