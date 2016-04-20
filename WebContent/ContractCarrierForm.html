@@ -299,15 +299,11 @@ $( document ).ready(function() {
 		$.ajax({
     url : "http://localhost:8080/EditAgreementForm/rest/PdfService/editForm",
     type: "GET",
+    dataType: "text",
     data : {data:JSON.stringify(sessionStorage)},
     success: function()
     {
-       window.open("file:///G:/my_db/MyGit/StartedUp/AgreementForm/ContractCarrierAgreement.pdf");
-    },
-    error: function ()
-    {
- 		alert('Something went wrong try again');
- 		window.open("file:///G:/my_db/MyGit/StartedUp/AgreementForm/ContractCarrierAgreement.pdf");
+       window.open("http://localhost:8080/EditAgreementForm/ContractCarrierAgreement.pdf");
     }
 });
 	});

@@ -24,23 +24,26 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 @Path("/PdfService")
-public class PdfService {
+public class PdfEditor {
 	private static PDDocument _pdfDocument;
+	private static int count;
 
 	@GET
 	@Path("/editForm")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response runPython(@DefaultValue("") @QueryParam("data") String data) {
 		//data = "{\"firstName\":\"Prithvi\", \"lastName\": \"Prakash\"}";
+		System.out.println(data);
 		Gson gson = new Gson();
 		Type type = new TypeToken<Map<String, String>>() {
 		}.getType();
 		Map<String, String> fieldNameAndValue = gson.fromJson(data, type);
 		String agreementType=fieldNameAndValue.get("agreementType");
 		System.out.println(fieldNameAndValue);
-		String src = "G:/my_db/MyGit/StartedUp/AgreementForm/"+agreementType+"Src.pdf";
-		String test = "G:/my_db/MyGit/StartedUp/AgreementForm/"+agreementType+".pdf";
+		String src = "G:/Softwares/webserver/apache-tomcat-8.0.27/apache-tomcat-8.0.27/webapps/EditAgreementForm/EditAgreementForm/"+agreementType+"Src.pdf";
+		String test = "G:/Softwares/webserver/apache-tomcat-8.0.27/apache-tomcat-8.0.27/webapps/EditAgreementForm/EditAgreementForm/"+agreementType+".pdf";
 		try {
+			File target= new File(test);
 			File pdf = new File(src);
 			_pdfDocument = PDDocument.load(pdf);
 			System.out.println(_pdfDocument.getNumberOfPages());
@@ -54,8 +57,8 @@ public class PdfService {
 					pdField.setValue(fieldNameAndValue.get(pdField.getFullyQualifiedName()));
 					pdField.setReadOnly(true);
 				}
-			}
-			_pdfDocument.save(test);
+			}System.out.println(target.exists()+" "+target.getName()+" "+pdf.getAbsolutePath());
+			_pdfDocument.save(target);
 			_pdfDocument.close();
 		} catch (Exception e) {
 			e.printStackTrace();
