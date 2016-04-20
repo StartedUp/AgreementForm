@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 @Path("/PdfService")
-public class PdfService {
+public class PdfEditor {
 	private static PDDocument _pdfDocument;
 	private static int count;
 
